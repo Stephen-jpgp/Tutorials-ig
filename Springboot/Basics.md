@@ -1,6 +1,0 @@
-@Component - used for defining classes
-@ComponentScan - used along with @Configuration annotation to specify the packages that we want to be scanned.<br>
-               - if used without args it means to scan the current package and all of its sub-packages
-Used as ->
-@Configuration
-@ComponentScan("package-name-to-be-scanned")
