@@ -1,0 +1,74 @@
+Model - used to predict results by forming mathematical relationships within the data provided
+
+Types of MLs
+
+    Supervised learning
+    Unsupervised learning
+    Reinforcement learning
+    Generative AI
+
+Supervised learning - using data from events that have taken place correctly to produce results that fit with the requirements.
+
+    Regression - predicts numerical value - amt of rainfall (inches/mm)
+    Classification - predicts what category an item belongs to
+
+    Binary - one of 2 categories (rain or no rain)
+    Multiclass - more categories (rain, hail, sleet, snow)
+
+Unsupervised Learning - All data is considered and the data is studied by the model. Different results are grouped into clusters (process called clustering) to make the given data make sense. The model infers the data using it’s own rules.
+
+Clustering is not categorization as the clusters are not formed by us but by the model
+
+Reinforcement Learning - A model that is given rewards or treats based on the results it provides thus reinforcing it. Like training a robot to walk or do something
+
+Generative AI - Generates content from user input
+
+text-to-text/video/audio/image/code (image and text)-to-image
+
+Supervised learning -
+
+core concepts -
+
+    Data
+    Model
+    Training
+    Evaluating
+    Inference
+
+Data -
+
+words, letters, images, waveforms (audio)
+
+dataset - data is stored as such
+
+Dataset - consists of features and label
+
+for rainfall prediction model
+
+    features - lattitude, longtitudde, wind direction, cloud coverage, humidity, temperature and atmospheric pressure
+    label - Rainfall amount
+
+examples that contain both label and features are called labeled examples
+
+unlabeled examples - no label and only features’
+
+Datasets - size and diversity
+
+    Good datasets - large and highly diverse
+    large no doesn’t guarantee diversity and highly diversity doesn’t mean sufficient examples
+    example - rainfall predicting model
+        model of one year but all months included (seasons) has diversity but less examples of rainfall
+        model of only July of every month to predict rainfall in January - no diversity but large dataset
+    Higher number of features also favourable - but if features don’t have any relationship to model then this can fail
+
+Model - Complex collection of numbers that define mathematical relationships from input feature patterns to output label values - models discover this pattern through training
+
+Training - models are provided multiple labeled examples - and they eventually work out the best solution for predicting the labels from the features. The models compare the label’s predicted value with it’s actual value. based on loss (the difference between the predicted and the actual value) the model updates its solution. It learns the mathematical relationship between the features and the label - to make best predictions on unseen data. Also the reason why large and diverse datasets are best. ML Practitioners can remove or add features to see if the accuracy of prediction is different.
+
+Evaluating - to know how well it learned - using labeled dataset but only provide the features to see the label values it returns and compare to the actual values
+
+Depending on these values more training and evaluation is done
+
+Inference - model can now make predictions on unlabeled datasets
+
+ 

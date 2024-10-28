@@ -1,0 +1,26 @@
+To determine if ML is a good approach for a problem and explains how to outline an ML solution
+
+Problem Framing - isolate individual elements from the problem that need to be addressed to solve It
+
+for solving an ML problem, formal problem solving is important - we can understand the data and the problem
+
+ML problem farming consists of 2 steps:
+1. Determining whether ML is the right approach for solving a problem
+2. Framing the problem in ML terms
+
+Understanding the problem:
+The following should be done:
+1. State the goal for the product being developed
+2. Determine whether a predictive ML, generqative AI or a non ML solution would be better to solve the goal
+3. Verify if we have the data required to train the model if we're going with a predictive ML approach
+
+
+
+State The Goal
+Begin by stating the goal in non ML terms
+
+ML systems - predictive ML and generative AI
+predictive ML - to guess if email is spam or not , guessing rainfall, predicting stock prices. - uses lots of data 
+Generative AI - generates output based on user intent (like summarizing an article, or producing an audio clip) - uses lots of unlabeled data to train a large language model or image generator to fill in missing data. model is used for tasks like fill-in-the-blank tasks, can be used for specific tasks like classification.
+
+

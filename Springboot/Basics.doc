@@ -1,4 +1,4 @@
-@Component - used for defining classes
+@Component - used for defining classes - spring automatically creates the beans for us for these classes
 @ComponentScan - used along with @Configuration annotation to specify the packages that we want to be scanned.
                - if used without args it means to scan the current package and all of its sub-packages
 Used as ->

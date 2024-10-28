@@ -1,0 +1,76 @@
+Types
+1. Constructor-based - dependencies set by creating the bean using its constructor
+2. Setter-based - dependencies set by calling setter methods on the beans
+3. Field - dependency injected using reflection
+
+Example for Field Injection
+Assume 3 classes where the remaining 2 are dependencies for the first one
+1. YourBusinessClass
+2. Dependency1
+3. Dependency2
+
+    @Component
+    class YourBusinessClass {
+        @Autowired
+        Dependency1 dependency1;
+
+        @Autowired
+        Dependency2 dependency2;
+
+        public String toString() {
+            return "Using " + dependency1 + " and " + dependency2;
+        }
+    }
+
+    @Component
+    class Dependency1 {}
+
+    @Component
+    class Dependency2 {}
+
+Using Autowired here caused the field injection to happen
+
+
+
+Example for Setter-based
+If the Autowired were to be on the setter methods
+    @Component
+    class YourBusinessClass {
+        Dependency1 dependency1;
+
+        Dependency2 dependency2;
+
+        @Autowired
+        public void setDependency1(Dependency1 dependency1) {
+            System.out.println("Setter Dependency - setDependency1");
+            this.dependency1 = dependency1;
+        }
+
+        @Autowired
+        public void setDependency2(Dependency2 dependency2) {
+            System.out.println("Setter Dependency - setDependency2");
+            this.dependency2 = dependency2;
+        }
+
+        public String toString() {
+            return "Using " + dependency1 + " and " + dependency2;
+        }
+    }
+
+
+Example for Constructor based
+Autowired on the constructor
+        @Component
+        class YourBusinessClass {
+            Dependency1 dependency1;
+            Dependency2 dependency2;
+
+            @Autowired
+            public YourBusinessClass(Dependency1 dependency1, Dependency2 dependency2) {
+                super();
+                System.out.println("Constructor Injection");
+                this.dependency1 = dependency1;
+                this.dependency2 = dependency2;
+            }
+        }
+
