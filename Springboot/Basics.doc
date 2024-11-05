@@ -4,3 +4,6 @@
 Used as ->
 @Configuration
 @ComponentScan("package-name-to-be-scanned")
+
+@Autowired
+used to automatically inject dependencies into Java classes
