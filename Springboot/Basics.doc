@@ -1,5 +1,7 @@
 var - a new kind of variable type - works with type inference - uses the value provided to assign type to the variable
 
+@Configuration - marks a class as a source of bean definitions, allowing the Spring container to manage the Beans defined in it
+
 @Component - used for defining classes - spring automatically creates the beans for us for these classes
 @ComponentScan - used along with @Configuration annotation to specify the packages that we want to be scanned.
                - if used without args it means to scan the current package and all of its sub-packages
