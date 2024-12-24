@@ -1,5 +1,9 @@
 var - a new kind of variable type - works with type inference - uses the value provided to assign type to the variable
 
+Record - a new feature in jdk 16 where we can create a class where the getters setters etc are automatically created
+* Created by using
+  - record Person (String name, int age) {};
+
 @Configuration - marks a class as a source of bean definitions, allowing the Spring container to manage the Beans defined in it
 
 @Component - used for defining classes - spring automatically creates the beans for us for these classes
