@@ -6,6 +6,42 @@ Record - a new feature in jdk 16 where we can create a class where the getters s
 
 @Configuration - marks a class as a source of bean definitions, allowing the Spring container to manage the Beans defined in it
 
+@Bean - the annotation that means the function returns a bean to be managed by the spring context.
+Using the name attribute, you can change the name of the bean
+ex: @Bean(name = "address3")
+    public Address address() { ... }
+If there are multiple beans of the same type and you try to retrieve a bean of that type, it throws an exception cause of the ambiguity.
+
+SPRING CONTAINER
+IOC (Inversion of Control) container = Spring Container
+2 types of spring containers
+1. Bean Factory
+2. Application Context - advanced spring container with enterprise-specific features (AnnotationConfigApplicationContext)
+
+BEANS
+    JavaBeans - not important at all
+    class JavaBean implements Serializable{
+      public JavaBean() { ... }
+      //getters and setters
+    }
+    requirements - 1. No argument constructor (public)
+                   2. Should have getters and setters
+                   3. Class should implement Serializable
+    Now an instance of the class JavaBean is a java bean
+
+    POJO class - Plain Old Java Object
+
+    Spring bean - any object managed by spring - spring uses IOC container to manage these objects
+
+CONTEXT RELATED FUNCTIONS
+context.getBeanDefinitionCount() - no. of beans defined in the registry - System.out.println(context.getBeanDefinitionCount());
+context.getBeanDefinitionNames() - returns string array of bean names - Arrays.stream(context.getBeanDefinitionNames()).forEach(System.out::println);
+
+HOW TO PUT PRIORITY IN CASE OF LINE 13 (multiple beans of the same type and it being retrieved through type)
+@Primary - gives the bean the first priority
+@Qualifier - to use the particular bean, we can call it as **@Qualifier("addressqualifier") Address address**
+@Qualifier("addressqualifier")
+
 @Component - used for defining classes - spring automatically creates the beans for us for these classes
 @ComponentScan - used along with @Configuration annotation to specify the packages that we want to be scanned.
                - if used without args it means to scan the current package and all of its sub-packages
