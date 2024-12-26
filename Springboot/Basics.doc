@@ -42,9 +42,13 @@ HOW TO PUT PRIORITY IN CASE OF LINE 13 (multiple beans of the same type and it b
 @Qualifier - to use the particular bean, we can call it as **@Qualifier("addressqualifier") Address address**
 @Qualifier("addressqualifier")
 
+HOW TO DEFINE BEANS WITHOUT USING **@Bean**
 @Component - used for defining classes - spring automatically creates the beans for us for these classes
 @ComponentScan - used along with @Configuration annotation to specify the packages that we want to be scanned.
                - if used without args it means to scan the current package and all of its sub-packages
+- Use this over a class definition
+
+
 Used as ->
 @Configuration
 @ComponentScan("package-name-to-be-scanned")
