@@ -1,5 +1,5 @@
 Types
-1. Constructor-based - dependencies set by creating the bean using its constructor - If there is a constructor without Autowired, it will be automatically autowired and it only works here.
+1. Constructor-based - dependencies set by creating the bean using its constructor - If there is a constructor without Autowired, it will be automatically autowired and it only works here. This is the most suited
 2. Setter-based - dependencies set by calling setter methods on the beans
 3. Field - dependency injected using reflection
 
