@@ -1,0 +1,16 @@
+@Component - instance of class that will be managed by Spring Framework
+           - Spring bean is created and managed by Spring framework
+
+Dependency - 
+
+Component Scan - to know where the components are
+               - provide the path to where the components are
+               - if without path then current path is used
+
+Dependency Injection - Identify beans, dependencies and wire them together (provides IOC - inversion of control)
+* Spring beans
+* IoC container (ApplicationContext or BeanFactory)
+    IOC - why is it called that?
+        - control shifts from programmer to spring framework
+
+Autowiring - process of figuring out what are the dependencies required for a Spring Bean

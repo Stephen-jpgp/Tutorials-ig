@@ -1,0 +1,18 @@
+Default initialization of a bean is called EAGER
+Using @Lazy, we can stall the initialization for a bean. Now it'll only happen if someone uses the class that get's initialized
+
+Eager still better tho - errors in the configuration are discovered immediately at application startup
+
+However beans can be configured to be lazily initialized using @Lazy - not frequently used nor recommended
+can be used almost everywhere @Component and @Bean are used
+Lazy-resolution proxy will be injected instead of actual dependency
+Can be used in Configuration class
+
+Difference between Lazy and Eager initialization
+* Bean initialised when it's first made use of in the application        * Bean initialised at startup of application
+* Not default                                                            * Default
+* @Lazy or @Lazy(value=true)                                             * @Lazy(value=false) or absence of lazy
+* Error = runtime error                                                  * Error = prevents app from starting
+* rarely used                                                            * very frequently used
+* memory consumption = less (until bean is initialised)                  * high = All beans initialised at startup
+* recommended for beans that are very rarely used                        * recommended for most beans

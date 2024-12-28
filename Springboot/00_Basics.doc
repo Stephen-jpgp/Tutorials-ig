@@ -41,6 +41,7 @@ HOW TO PUT PRIORITY IN CASE OF LINE 13 (multiple beans of the same type and it b
 @Primary - gives the bean the first priority
 @Qualifier - to use the particular bean, we can call it as **@Qualifier("addressqualifier") Address address**
 @Qualifier("addressqualifier")
+***But @Qualifier has higher priority than @Primary*** 
 
 HOW TO DEFINE BEANS WITHOUT USING **@Bean**
 @Component - used for defining classes - spring automatically creates the beans for us for these classes
@@ -55,3 +56,30 @@ Used as ->
 
 @Autowired
 used to automatically inject dependencies into Java classes
+
+
+When to use @Component and @Bean
+* used on any java class                        * typically used on methods in Spring Configuration Class
+* initiated by just using the annotation        * you write all the code for creating the bean and autowiring
+  - @Component                                    the dependencies 
+* Autowiring done via Field, Setter or          * done via method calls or using parameters
+  Constructor injection
+* Spring framework creates the beans            * We write the bean creation code
+* recommended to use when instantiating         * for
+  beans for own application code                  1. custom business logic (like the GTCaas logic for eg (we're not doing this tho))
+                                                  2. Instantiating Beans for 3rd party libraries  
+
+
+Why lots of dependencies?
+1. Multiple layers in a project (Web, business, data, etc)
+2. Each layer is dependent on the layer below it
+   * class in web layer cud be talking to class in business layer
+   * class in business layer talks to class in data layer (data layer is depdency of business layer)
+3. With Spring framework
+   * instead of focussing on objects, their dependencies and wiring
+     * focus on business logic of applications
+   * Spring framework manages the lifecycle of objects
+     * mark components using annotations
+     * mark dependencies using autowired
+     * allow spring framework do its thing
+
