@@ -1,0 +1,23 @@
+1. spring-boot-starter and spring-boot-starter-test => Starter dependencies in the pom.xml of a newly generated project
+2. spring-boot-starter-web => dependency used in web based applications
+3. spring dependencies and maven dependencies are not the same
+4. parent pom - spring-boot-starter-parent
+    dependency management: spring-boot-dependencies
+    effective pom lets us see all the dependencies
+5. dependencyManagement section is where we specify the versions of the dependencies - with this in hand we don't need to specify versions for dependencies that are in the effective pom
+6. we inherit a lot of plugins and their configurations
+7. groupId     -|=> stuff that if another project uses then they can practically use our project. We can also use versions 
+   ArtifactId  -|
+8. groupId -> similar to package name
+9. artifactId -> similar to class name
+10. to see the entire dependency tree => mvn dependency:tree
+11. to see the effective pom => mvn help:effective-pom
+12. To check the dependencies using central repository - link - https://repo1.maven.org/maven2/
+13. mvn compile - compiles source files
+14. mvn test-compile - compiles test files, compiles source files as well
+15. mvn clean - cleans the entire target folder
+16. mvn test - runs unit tests
+17. mvn package - creates jar file
+18. mvn help:effective-pom - creates the effective pom
+19. mvn dependency:tree - creates the dependency tree
+20. Which of these commands can be used to build a container image with Spring Boot Maven Plugin - mvn spring-boot:build-image

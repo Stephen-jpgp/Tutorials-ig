@@ -1,0 +1,3 @@
+Two important annotations
+@PostConstruct - annotation that makes sure that a particular method is executed right after the bean is initialised. Happens only once. Used fo like db connections 
+@PreDestroy - annotation that makes sure a particular method is executed right before a bean is terminated. Happens only once. Used for cleanup related functions

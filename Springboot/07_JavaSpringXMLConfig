@@ -1,0 +1,37 @@
+NOTE: This is not very used much. Just information
+To use XML configuration in Spring first create a file named "contextConfiguration.xml" in the resources folder. The content in that file is:
+    <?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"> <!-- bean definitions here -->
+    	
+     	
+    </beans>
+
+The context shud be created as 
+    try(var context = new ClassPathXmlApplicationContext("contextConfiguration.xml")){ ... }
+
+THE FOLLOWING CAN BE ADDED TO <beans></beans>
+    1. And the beans shud be created as 
+        <bean id="name" class="java.lang.String">
+            <constructor-arg value="Ranga" />
+        </bean>
+
+    2. For component-scan, 
+        <context:component-scan base-package="com/in28minutes/learn_spring_framework/game" />
+
+    3. THE FOLLOWING ARE USING THE GAMERUNNER EXAMPLE
+        3.1. If you want to define an other class as a bean in this program
+            <bean id="game" class="com.in28minutes.learn_spring_framework.game.PacManGame"></bean>
+        
+        3.2. If you want to run a class with a dependency, say GameRunner who is dependent on game from 3.1
+            <bean id="gameRunner" class="com.in28minutes.learn_spring_framework.game.GameRunner">
+                <constructor-arg ref="game" />
+            </bean>
+            This should be right after the code in 3.1
+
+
+
+
