@@ -83,3 +83,10 @@ Why lots of dependencies?
      * mark dependencies using autowired
      * allow spring framework do its thing
 
+Different logging levels
+1. Trace - all logs printed              ^ 
+2. Debug                                 |
+3. Info                                  |  The amount of logs increases upwards
+4. Warning -                             |
+5. Error - only errors and exceptions    |
+6. Off - turns off entire logging        |

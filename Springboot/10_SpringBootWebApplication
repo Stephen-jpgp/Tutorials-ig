@@ -1,0 +1,46 @@
+1. To create a web based springboot application in sprint.initializr you need to check the depedndency for Spring Web
+2. It will come with the annotation @SpringBootApplication
+3. @RestController - a specialised form of controller that involves properties of ResponseBody also - this means all methods defined in the controller don't need to have the ResponseBody annotation.
+4. @RequestMapping("--url--") - to map web requests to spring controller methods.
+5. logging.level.org.springframework=debug => Adding this line to application.properties means that we want to debug at the org level
+    5.1. Once this is done a CONDITIONS EVALUATION REPORT is generated - has POSITIVE MATCHES and NEGATIVE MATCHES (things that didn't get autoconfigured).
+6. All autoconfiguration info is stored in spring-boot-autoconfigure.jar
+7. Use spring-boot-devtools dependency to build faster using the dev tools - but only useful in Intellij Ultimate(the paid one)
+    7.1. Basically any change you make to files, once saved the server restarts
+    7.2. HOWEVER this doesn't work with pom.xml, you gotta manually restart at that time
+8. Managing App Configurations using Profiles
+    8.1. An App may need to be run on different environments like dev, itg etc - profiles help with differential environment dealing
+    8.2 Suppose I want my logs in the dev to be on the trace level (lower than debug) and my logs in prod to be on the info level
+        8.2.1. I can use profiling now.
+        8.2.2. Duplicate the application.properties file and rename it as application-dev.properties and application-prod.properties => very important
+        8.2.3. Then in the application.properties, I can add spring.profiles.active=prod or dev, depending on what env I wanna make primary
+        8.2.4. Even if I specified a logging level in application.properties, the logging level of the active profile is nonetheless printed
+9. For configurations specific to services and modules we can use @ConfigurationProperties
+    9.1. Now we can extract the configurations set in application.properties
+    9.2. Example
+            application.properties
+                ...
+                currency-service.url=...
+                currency-service.username=...
+                currency-service.key=...
+
+            For a class CurrencyServerConfiguration while defining it,
+                @ConfigurationProperties(prefix="currency-service")
+                @Component
+                public class CurrencyServerConfiguration { ... }
+    9.3. In the case of different profiles (let's say dev), go to the application-dev.properties and define the values there
+10. We can use the JAR file to run the application using the command java -jar jar.file => basically we just  need java installed and we can run the jar file, this is how embedded server deployment works
+11. To monitor and manage application in production we can use an Actuator
+    11.1. Provides number of endpoints
+        11.1.1. beans - complete list of all beans in the app
+        11.1.2. health - app health info - if the app is up and running
+        11.1.3. metrics - app metrics
+        11.1.4. mappings - can get info on all the request mappings
+    11.2. To see the actuator - we use the link http://localhost:8080/actuator
+    11.3. To enable more features of actuator go to application.properties and add management.endpoints.web.exposure.include=* => exposes all endpoints in actuator (basically the localhost actuator link)
+        11.3.1. configprops - can see all the configuration properties and values
+        11.3.2. env - shows environment related values
+        11.3.3. metrics - gives list of metrics
+        11.3.4. instead of * we can use values, ex: management.endpoints.web.exposure.include=health,metrics using commas to separate
+12. @SpringBootApplication annotation is a combination of 3 annotations: @SpringBootConfiguration + @EnableAutoConfiguration + @ComponentScan
+

@@ -1,0 +1,10 @@
+1. Dependencies to make this project are spring web, jdbc, h2 and jpa
+2. to enable h2 database to be initialised we so this in application.properties => spring.h2.console.enabled=true - now in localhost:8080/h2-console we can see the h2 thingie.
+3. schema.sql file is created in resources folder - JPA will fetch the schema.sql file and bring it to h2
+4. Queries I'm running in the h2 database
+    insert into course(id,name,author)
+    values(1,'Learn AWS', 'in28minutes') 
+
+    select * from course
+
+    delete from course where id=1
