@@ -1,0 +1,35 @@
+0. Check myfirstwebapp for more info on the code. Remember we started from Controller and then to jsp. We went from Helloworld to login controller.
+1. to add jsp java server pages we need to create them under resources as resources/META-INF/resources/WEB-INF/jsp/sayHello.jsp (sayHello.jsp is the example here)
+    1.1. The path for prefix suffix for the views shud be made in the even there's gonna be more too many views and the prefix will be /WEB-INF/jsp cuz apparently spring knows the rest of the path and the suffix will be .jsp
+2. Model - used to communicate between Controller and JSP
+3. The following code needs to be added for the jsp related controllers to work in pom.xml as a dependency
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-jasper</artifactId>
+            </dependency>
+4. Suppose I wanna pass a parameter via the url like /login?name=Stephen, to use the value Stephen I can 
+            @RequestMapping("/login")
+            public String login(@RequestParam String name, ModelMap model) {
+                model.put("name", name);
+                System.out.println("Request param is " + name);
+                return "login";
+            }
+To note, there's a ModelMap implemented, that's our mediator between Controller and JSP. And put the name in ModelMap for use in jsp
+            ${name} => let's me use the name
+Use @RequestParam within the arguments section of the function. Include ModelMap also for the purposes mentioned above
+5. Suppose I wanna make a specific debugging for a particular package I can do 
+            logging.level.com.in28minutes.springboot.myfirstwebapp=debug
+For example if,
+            logging.level.springframework=info
+            logging.level.com.in28minutes.springboot.myfirstwebapp=debug
+Here everything else but myfirstwebapp package will have info logging
+6. For logging
+            import org.slf4j.Logger;
+            import org.slf4j.LoggerFactory;
+            ...
+            private Logger logger = LoggerFactory.getLogger(getClass());
+            logger.debug("Request param is {} at debug level", name);
+            logger.info("Request param is {} at info level", name);
+            logger.warn("Request param is {} at warn level", name);
+Changing the value of logging.level.com.in28minutes.springboot.myfirstwebapp=debug to info or warn, we can play around with how we want the logs to look for the particular package.
+7. GET method less secure than POST

@@ -8,3 +8,133 @@
     select * from course
 
     delete from course where id=1
+
+5. Spring JDBC
+    5.1. This will be the query to execute the insert part, this is done in a separate class
+        @Repository
+        public class CourseJdbcRepository {
+            @Autowired
+            private JdbcTemplate springJdbcTemplate;
+
+            private static String INSERT_QUERY =
+                    """
+                            insert into course(id,name,author)
+                            values(1,'Learn AWS', 'in28minutes');
+                    """;
+            public void insert() {
+                springJdbcTemplate.update(INSERT_QUERY);
+            }
+        }
+    5.2. Now if I want this query to run when the app is initialised, I have to create the CommandLineRunner class
+        @Component
+        public class CourseJdbcCommandLineRunner implements CommandLineRunner {
+
+            @Autowired
+            private CourseJdbcRepository repository;
+
+            @Override
+            public void run(String... args) throws Exception {
+                repository.insert();
+            }
+        }
+    5.3. If I wanna do the insert without the string queries I can do this
+        @Repository
+        public class CourseJdbcRepository {
+            @Autowired
+            private JdbcTemplate springJdbcTemplate;
+
+            private static String INSERT_QUERY =
+                    """
+                            insert into course(id,name,author)
+                            values(?,?,?);
+                    """;
+            public void insert(Course course) {
+                springJdbcTemplate.update(INSERT_QUERY, course.getId(), course.getName(), course.getAuthor());
+            }
+        }
+    We can do this simply by creating a Course class with constructor, getters and toString.
+    5.4. To execute a select query
+
+                private static String SELECT_QUERY =
+                    """
+                            select * from course where id=?""";
+                
+                public Course findById(long id) {
+                    return springJdbcTemplate.queryForObject(SELECT_QUERY,new BeanPropertyRowMapper<>(Course.class), id);
+                }
+
+
+    While doing this do not forget to add the setters also to the Course class
+    reason is cuz we're not populating the db by creating a Course class and when we're selecting a query we're creating one and SETTING values to that. So we need SETTERS!
+6. Jakarta JPA
+    6.1. For this one, the Course class needs to have an annotation @Entity
+    6.2. Basically here there will be a direct mapping between the bean and the table
+    6.3. The primary key will be annoted with @Id 
+                @Entity
+                public class Course {
+                    @Id
+                    private long id;
+
+                    @Column(name="name")
+                    private String name;
+
+                    @Column(name="author")
+                    private String author;
+
+                    ...}
+    If suppose the table was named Course_Details and the bean is Course then 
+                    @Entity (name="Course_Details")
+    
+    But technically since the column and the parameter names are the same we can remove @Column.
+    6.4. An EntityManager will be used to manage the entities
+                @Repository
+                @Transactional   -- helps with jpa related queries
+                public class CourseJpaRepository {
+
+                    @PersistenceContext
+                    private EntityManager entityManager;
+
+                    public void insert(Course course) {
+                        entityManager.merge(course);
+
+                    }
+
+                    public Course findById(long id) {
+                        return entityManager.find(Course.class, id);
+                    }
+
+                    public void deleteById(long id) {
+                        Course course = entityManager.find(Course.class,id);   => here find the class then remove it 
+                        entityManager.remove(course);
+                    }
+                }
+    @Autowired will also work for the EntityManager but PersistenceContext is better as it's EntityManager specific
+    6.5. In the CommandLineRunner class 
+                jpaRepository.insert(new Course(4,"Learn new AWS Now!", "in28minutes"));
+                jpaRepository.insert(new Course(5,"Learn new GSP!", "in28minutes"));
+                jpaRepository.insert(new Course(6,"Learn new Java!", "in28minutes"));
+                jpaRepository.deleteById(4);
+                System.out.println(jpaRepository.findById(6));
+    6.6. spring.jpa.show-sql=true => adding this to the application.properties file will allow us to see the sql operations done using jpa.
+7. SpringDataJpa => This baby makes life so so much easier
+    7.1. You need to use an interface Repository and extend that to JpaRepository<Course, Long> => <Class , identifier>
+                    
+                    public interface CourseSpringDataJpaRepository extends JpaRepository<Course , Long> {
+                    }
+
+    This is it, we don't need a EntityManager.
+    7.2. Then after that in the CommandLineRunner class 
+                    springDataJpaRepository.save(new Course(7,"Learn Nihility!", "in28minutes"));
+                    springDataJpaRepository.save(new Course(8,"Learn Erudition", "in28minutes"));
+                    springDataJpaRepository.save(new Course(9,"Learn Harmony", "in28minutes"));
+                    springDataJpaRepository.deleteById(9L);
+                    System.out.println(springDataJpaRepository.findById(8L));
+    save works like insert, deleteById and findById, well they work as how they're written
+    7.3. We can also create custom commands, eg in the CourseSpringDataJpaRepository:
+                    public interface CourseSpringDataJpaRepository extends JpaRepository<Course , Long> {
+                        List<Course> findByAuthor (String author); 
+                    }                                                   
+        to find something a particular naming convention needs to be followed and that is findBy followed by the parameter that needs to be found.
+        
+        In the CommandLineRunner,
+                    System.out.println(springDataJpaRepository.findByAuthor("in28minutes"));

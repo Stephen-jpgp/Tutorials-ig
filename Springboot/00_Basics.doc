@@ -90,3 +90,5 @@ Different logging levels
 4. Warning -                             |
 5. Error - only errors and exceptions    |
 6. Off - turns off entire logging        |
+
+To change the port number => server.port=8081
