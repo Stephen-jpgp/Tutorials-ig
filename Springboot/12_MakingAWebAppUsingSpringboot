@@ -33,3 +33,5 @@ Here everything else but myfirstwebapp package will have info logging
             logger.warn("Request param is {} at warn level", name);
 Changing the value of logging.level.com.in28minutes.springboot.myfirstwebapp=debug to info or warn, we can play around with how we want the logs to look for the particular package.
 7. GET method less secure than POST
+8. If a particular method handles both GET and POST we can change that using RequestMethod.METHOD(GET/POST/etc)
+9. @RequestParam is used to capture form data
