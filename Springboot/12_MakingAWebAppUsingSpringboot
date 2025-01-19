@@ -36,4 +36,4 @@ Changing the value of logging.level.com.in28minutes.springboot.myfirstwebapp=deb
 8. If a particular method handles both GET and POST we can change that using RequestMethod.METHOD(GET/POST/etc)
 9. @RequestParam is used to capture form data
 10. Use @SessionAttributes("<value>") before a controller if you want to use a particular input received across a session.
-11. JSTL tags - making tables
+11. JSTL tags - making tables - use this link to find more links - https://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/c/tld-summary.html
