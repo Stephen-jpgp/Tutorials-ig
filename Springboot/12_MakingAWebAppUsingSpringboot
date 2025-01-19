@@ -35,3 +35,5 @@ Changing the value of logging.level.com.in28minutes.springboot.myfirstwebapp=deb
 7. GET method less secure than POST
 8. If a particular method handles both GET and POST we can change that using RequestMethod.METHOD(GET/POST/etc)
 9. @RequestParam is used to capture form data
+10. Use @SessionAttributes("<value>") before a controller if you want to use a particular input received across a session.
+11. JSTL tags - making tables
