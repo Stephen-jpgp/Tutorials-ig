@@ -1,15 +1,65 @@
-#general
-import io
+The required libraries ->
+    !pip install numpy~=2.0.0
+    !pip install matplotlib~=3.10.0
+    !pip install pandas~=2.2.0
+    !pip install tensorflow~=2.18.0
+    !pip install keras~=3.8.0
 
-#data
-import numpy as np 
-import pandas as pd
+Loading dependencies ->
+    #general
+    import io
 
-#ML
-import keras 
+    #data
+    import numpy as np 
+    import pandas as pd
 
-#data visualization
-import plotify.express as px
-from plotly.subplots import make_subplots
-import plotly.graph_objects as go 
-import seaborn as sns 
+    #ML
+    import keras 
+
+    #data visualization
+    import plotify.express as px
+    from plotly.subplots import make_subplots
+    import plotly.graph_objects as go 
+    import seaborn as sns 
+
+Loading dataset
+    # @title
+    chicago_taxi_dataset = pd.read_csv("https://download.mlcc.google.com/mledu-datasets/chicago_taxi_tra   z in.csv")
+
+Update the dataframe
+    reading dataset
+        #@title Code - Read dataset
+
+        # Updates dataframe to use specific columns.
+        training_df = chicago_taxi_dataset[['TRIP_MILES', 'TRIP_SECONDS', 'FARE', 'COMPANY', 'PAYMENT_TYPE', 'TIP_RATE']]
+
+        print('Read dataset completed successfully.')
+        print('Total number of rows: {0}\n\n'.format(len(training_df.index)))
+        training_df.head(200)
+
+    dataset expoloration
+        * to view dataset analytics -use Dataframe.describe
+        * if the value doesn't exist in the table then it is replaced with NaN
+            print('Total number of rows: {0}\n\n'.format(len(training_df.index)))
+            training_df.describe(include='all')
+
+(yeah here i got slightly bored so Imma just write stuff down now)
+
+correlation -> relationship that provide insight on which features correlate with the label
+1.0 -> perfect positive correlation -> when one attribute rises the other rises too
+-1.0 -> perfect negative correlation -> when one attribute rises the other falls
+0.0 -> absolutely no correlation -> two columns are not linearly related
+technically, the higher the absolute value of correlation, the greater it's predictive power
+    to see the correlation matrix
+        training_df.corr(numeric_only = True)
+    
+    to view the relationships in a dataset
+        sns.pairplot(training_df, x_vars=["FARE", "TRIP_MILES", "TRIP_SECONDS"], y_vars=["FARE", "TRIP_MILES", "TRIP_SECONDS"])
+
+
+Training a model
+    to visualize results of each training - > generate 2 plots ar end of each experiment
+        * scatter plot of the features vs label with line showing the output of the trained model
+        * a loss curve
+    
+    
