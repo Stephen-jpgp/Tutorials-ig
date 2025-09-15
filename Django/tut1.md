@@ -1,5 +1,7 @@
 python manage.py runserver - to run a django project
-A virtual environment should be created to create a django project in it - source myworld/Scripts/activate is the command to create as well as open the virtual environment.
+A virtual environment should be created to create a django project in it
+  python -m venv myworld -> to create a project containing the virtual environment
+  source myworld/Scripts/activate is the command to  open the virtual environment.
 views.py are actually python functions
 
 Adding data:
